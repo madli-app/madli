@@ -1,0 +1,59 @@
+# ------------------------------------------------------------------------------
+# SPDX-License-Identifier: Apache-2.0
+# Copyright (C) 2026 Jayesh Badwaik <j.badwaik@fz-juelich.de>
+# ------------------------------------------------------------------------------
+
+[project]
+name = "madli"
+version = "0.0.1"
+description = "madli"
+readme = "readme.md"
+license = "Apache-2.0"
+license-files = ["LICENSES/*"]
+requires-python = ">=3.11"
+authors = [
+  { name = "Jayesh Badwaik", email = "j.badwaik@fz-juelich.de" },
+]
+classifiers = [
+  "Programming Language :: Python :: 3",
+]
+dependencies = []
+
+[project.scripts]
+madli = "madli.cli:main"
+
+# ------------------------------------------------------------------------------
+# Hatch configuration
+# ------------------------------------------------------------------------------
+[build-system]
+requires = ["hatchling==1.32.4"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/madli"]
+
+# ------------------------------------------------------------------------------
+# PyTest configuration
+# ------------------------------------------------------------------------------
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["test"]
+
+# ------------------------------------------------------------------------------
+# Development dependencies, installed by uv sync
+# ------------------------------------------------------------------------------
+[dependency-groups]
+dev = [
+  "pytest>=8",
+  "reuse>=5",
+  "ruff>=0.15",
+]
+
+# ------------------------------------------------------------------------------
+# Ruff configuration
+# ------------------------------------------------------------------------------
+[tool.ruff]
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "W"]
